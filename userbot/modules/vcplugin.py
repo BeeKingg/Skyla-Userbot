@@ -23,7 +23,7 @@ from userbot import CMD_HELP
 from userbot import PLAY_PIC as fotoplay
 from userbot import QUEUE_PIC as ngantri
 from userbot import call_py, owner
-from userbot.utils import bash, edit_delete, edit_or_reply, man_cmd
+from userbot.utils import bash, edit_delete, edit_or_reply, skyla_cmd
 from userbot.utils.chattitle import CHAT_TITLE
 from userbot.utils.queues.queues import (
     QUEUE,
@@ -124,7 +124,7 @@ async def _joinvc(event):
 
 
 
-@man_cmd(pattern="play(?:\s|$)([\s\S]*)")
+@skyla_cmd(pattern="play(?:\s|$)([\s\S]*)")
 async def vc_play(event):
     title = event.pattern_match.group(1)
     replied = await event.get_reply_message()
@@ -216,7 +216,7 @@ async def vc_play(event):
                 await botman.edit(f"`{ep}`")
 
 
-@man_cmd(pattern="vplay(?:\s|$)([\s\S]*)")
+@skyla_cmd(pattern="vplay(?:\s|$)([\s\S]*)")
 async def vc_vplay(event):
     title = event.pattern_match.group(1)
     replied = await event.get_reply_message()
@@ -355,7 +355,7 @@ async def vc_vplay(event):
                     await xnxx.edit(f"`{ep}`")
 
 
-@man_cmd(pattern="end$")
+@skyla_cmd(pattern="end$")
 async def vc_end(event):
     chat_id = event.chat_id
     if chat_id in QUEUE:
@@ -368,7 +368,7 @@ async def vc_end(event):
     else:
         await edit_delete(event, "**Tidak Sedang Memutar Streaming**")
 
-@man_cmd(pattern="joinvcs$")
+@skyla_cmd(pattern="joinvcs$")
 async def joinvcs(event):
     group_call = GROUP_CALLS.get(event.chat_id)
     if not (group_call and group_call.is_connected):
@@ -378,7 +378,7 @@ async def joinvcs(event):
         except BaseException:
             pass
 
-@man_cmd(pattern="leftvcs$")
+@skyla_cmd(pattern="leftvcs$")
 async def leftvcs(event):
     group_call = GROUP_CALLS.get(event.chat_id)
     if group_call and group_call.is_connected:
@@ -390,7 +390,7 @@ async def leftvcs(event):
             pass
 
 
-@man_cmd(pattern="skip(?:\s|$)([\s\S]*)")
+@skyla_cmd(pattern="skip(?:\s|$)([\s\S]*)")
 async def vc_skip(event):
     chat_id = event.chat_id
     if len(event.text.split()) < 2:
@@ -419,7 +419,7 @@ async def vc_skip(event):
             await event.edit(DELQUE)
 
 
-@man_cmd(pattern="pause$")
+@skyla_cmd(pattern="pause$")
 async def vc_pause(event):
     chat_id = event.chat_id
     if chat_id in QUEUE:
@@ -432,7 +432,7 @@ async def vc_pause(event):
         await edit_delete(event, "**Tidak Sedang Memutar Streaming**")
 
 
-@man_cmd(pattern="resume$")
+@skyla_cmd(pattern="resume$")
 async def vc_resume(event):
     chat_id = event.chat_id
     if chat_id in QUEUE:
@@ -445,7 +445,7 @@ async def vc_resume(event):
         await edit_delete(event, "**Tidak Sedang Memutar Streaming**")
 
 
-@man_cmd(pattern=r"volume(?: |$)(.*)")
+@skyla_cmd(pattern=r"volume(?: |$)(.*)")
 async def vc_volume(event):
     query = event.pattern_match.group(1)
     chat = await event.get_chat()
@@ -468,7 +468,7 @@ async def vc_volume(event):
         await edit_delete(event, "**Tidak Sedang Memutar Streaming**")
 
 
-@man_cmd(pattern="playlist$")
+@skyla_cmd(pattern="playlist$")
 async def vc_playlist(event):
     chat_id = event.chat_id
     if chat_id in QUEUE:
